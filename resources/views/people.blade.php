@@ -82,10 +82,10 @@
 @endsection
 
 @push('styles')
-<link href="{{ asset('assets/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ secure_asset('assets/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css">
 @endpush
 
 @push('scripts')
-    <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
-    <script src="{{ asset('assets/js/gamer/gamer.js') }}" type="text/javascript"></script>
+    <script src="{{ secure_asset('assets/js/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ secure_asset('assets/js/gamer/gamer.js') }}" type="text/javascript"></script>
 @endpush

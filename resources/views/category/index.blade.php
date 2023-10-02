@@ -29,7 +29,7 @@
 
 @push('styles')
     <!-- Style Datatables -->
-    <link href="{{ asset('assets/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('assets/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <style>
       .typeDisease{
         text-align: justify;
@@ -40,8 +40,8 @@
 
 @push('scripts')
     <!-- Datatables -->
-    <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/js/dataTables.bootstrap4.min.js') }}" type="text/javascript"></script>
+    <script src="{{ secure_asset('assets/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ secure_asset('assets/js/dataTables.bootstrap4.min.js') }}" type="text/javascript"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>

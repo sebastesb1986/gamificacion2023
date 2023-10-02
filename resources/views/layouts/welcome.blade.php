@@ -14,7 +14,7 @@
     
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ secure_asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- Favicons -->
     <meta name="msapplication-config" content="/docs/4.6/assets/img/favicons/browserconfig.xml">
@@ -39,9 +39,9 @@
   </style>
     
   <!-- Custom styles for this template -->
-  <link href="{{ asset('assets/css/cover.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ secure_asset('assets/css/cover.css') }}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  <link href="{{ asset('assets/css/all.min.css') }}" rel="stylesheet" type="text/css">  
+  <link href="{{ secure_asset('assets/css/all.min.css') }}" rel="stylesheet" type="text/css">  
   @stack('styles')
   </head>
   <body class="text-center">
@@ -69,11 +69,11 @@
   </footer>
 </div>
 
-<script src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ secure_asset('assets/js/jquery/jquery.min.js') }}"></script>
+<script src="{{ secure_asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
+<script src="{{ secure_asset('assets/js/jquery.easing.min.js') }}"></script>
 @stack('scripts')
     
   </body>
