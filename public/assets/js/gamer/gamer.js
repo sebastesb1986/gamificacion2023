@@ -215,12 +215,13 @@ function saveResult()
 
         Object.keys(categorySums).forEach((categoryName) => {
             const sum = categorySums[categoryName];
+            const ids = categoryIds[categoryName];
 
             if(sum > maxCategorySum){
 
                 maxCategorySum = sum;
                 maxCategoryname = categoryName;
-                maxCategoryId = categoryId;
+                maxCategoryId = ids;
 
             }
 
