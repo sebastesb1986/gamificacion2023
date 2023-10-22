@@ -134,7 +134,7 @@ class UserController extends Controller
         ];
 
         foreach ($values as $value) {
-            
+
             ResultGamer::updateOrCreate(
                 [   
                     'gamer_id' => $request->gamer_id,
@@ -178,6 +178,7 @@ class UserController extends Controller
             $maxValue = 0;
             $maxCategorySum = 0;
             $maxCategoryName = '';
+            $maxCategoryId = 0;
             $categorySums = []; // Crear un arreglo para almacenar las sumas por categoría
             
             // 2. Verificar si hay al menos una suma en el arreglo
@@ -197,6 +198,7 @@ class UserController extends Controller
             // 3. Ciclo para obtener las estadisticas de un usuario Gamer
             foreach($gamer as $index => $gmr){
 
+                $categoryId = $gmr->question->category->id;
                 $categoryName = $gmr->question->category->name;
                 $categoryDescription = $gmr->question->category->description;
                 $gamerName = $gmr->gamer->name;
@@ -218,8 +220,9 @@ class UserController extends Controller
                 
             }
 
-            return response()->json(['categoryName' => $categoryName, 'gamerName' => $gamerName, 
-            'categoryDescriptions' =>$categoryDescriptions, 'maxCategorySum' => $maxCategorySum, 
+            return response()->json(['categoryId' => $categoryId, 'categoryName' => $categoryName,
+            'gamerName' => $gamerName,  'categoryDescriptions' =>$categoryDescriptions, 
+            'maxCategorySum' => $maxCategorySum, 'maxCategoryId' => $maxCategoryId, 
             'maxCategoryName' => $maxCategoryName , 'categorySums' => $categorySums]);
 
         }
