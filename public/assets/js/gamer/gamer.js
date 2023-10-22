@@ -271,9 +271,9 @@ function saveResult()
                         showConfirmButton: false,
                     });  
                 
-                    /*setTimeout(() => {
+                    setTimeout(() => {
                         window.location.href = "/";
-                    }, 3000);*/
+                    }, 3000);
                 } 
             });
         }
@@ -306,6 +306,6 @@ function guardarDatos(sum, gmrId, categ_id) {
         console.log("guardado exitoso!");
     })
     .catch(error => {
-        console.log("Error al guarar " + error);
+        console.log(error);
     });
 }
