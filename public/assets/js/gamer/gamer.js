@@ -247,7 +247,7 @@ function saveResult()
             
         });
 
-       
+
         if (resultAlerts.length > 0) {
 
             
