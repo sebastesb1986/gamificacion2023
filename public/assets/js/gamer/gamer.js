@@ -218,8 +218,6 @@ function saveResult()
 
                 maxCategorySum = sum;
                 maxCategoryname = categoryName;
-                categId = categoryName;
-                maxValue = sum
 
             }
 
@@ -243,8 +241,7 @@ function saveResult()
         if (resultAlerts.length > 0) {
 
             $('.cover-container').html('');
-             // GUARDAR
-             this.guardarDatos(gmrId, categId, maxValue);
+            
             // Mostrar todos los resultados acumulados en el diálogo Swal
             Swal.fire({
                 icon: 'info',
