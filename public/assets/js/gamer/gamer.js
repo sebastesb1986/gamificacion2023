@@ -287,24 +287,25 @@ function guardarDatos(sum, gmrId, categ_id) {
   
     let route = `/saveResultsGamer`;
 
-    let formData = {
+    let ajax_data = {
 
         'value': sum,
         'gamer_id': gmrId,
         'category_id': categ_id
 
     };
+    
     $.ajax({
         url: route,
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         type: 'POST',
         dataType: 'json',
-        data: formData,
-    success: function(response) {
-        console.log("Datos guardados automáticamente");
-    },
-    error: function(xhr, status, error) {
-        console.error("Error al guardar los datos: " + error);
-    }
+        data: ajax_data,
+    })
+    .then(response => {
+        console.log("guardado exitoso!");
+    })
+    .catch(error => {
+        console.log("Error al guarar " + error);
     });
 }

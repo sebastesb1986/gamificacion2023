@@ -123,7 +123,7 @@ class UserController extends Controller
     // RESULT GAMER
     public function resultGamer(Request $request)
     {
-        $values = $request->value;
+        $values = $request->all();
 
         $data = [
 
@@ -134,7 +134,7 @@ class UserController extends Controller
         ];
 
         foreach ($values as $value) {
-
+     
             ResultGamer::updateOrCreate(
                 [   
                     'gamer_id' => $request->gamer_id,
@@ -142,7 +142,7 @@ class UserController extends Controller
                         
                 ], 
                 [
-                    'value' => $value,
+                    'value' => $request->value,
                     'gamer_id' => $request->gamer_id,   // Datos para actualizar o crear
                     'category_id' => $request->category_id
                 ] 
