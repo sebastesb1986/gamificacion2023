@@ -237,9 +237,12 @@ function saveResult()
             const sum = categorySums[categoryName];
 
             if (sum === maxCategorySum) {
-                let resultAlert = '<b>'+categoryName+'</b>'+': '+ categoryIds[categoryName];
+                let resultAlert = '<b>'+categoryName+'</b>'+': '+ categoryDescriptions[categoryName];
                 resultAlerts.push(resultAlert);
             }
+
+            this.guardarDatos(gmrId, sum, categoryIds[categoryName]);
+            
         });
 
         if (resultAlerts.length > 0) {
@@ -280,7 +283,7 @@ function saveResult()
 }
 
 // Función para guardar los datos mediante AJAX
-/*function guardarDatos(gamer_id, categ_id, maxValue) {
+function guardarDatos(gamer_id, categ_id, maxValue) {
   
     let route = `/saveResultsGamer`;
 
@@ -304,4 +307,4 @@ function saveResult()
         console.error("Error al guardar los datos: " + error);
     }
     });
-}*/
+}
