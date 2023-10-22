@@ -140,11 +140,7 @@ dd($request-all());
                     'category_id' => $request->category_id,  // Columna(s) para buscar el registro existente
                         
                 ], 
-                [
-                    'value' => $request->value,
-                    'gamer_id' => $request->gamer_id,   // Datos para actualizar o crear
-                    'category_id' => $request->category_id
-                ] 
+                $data
             );
         // }
 

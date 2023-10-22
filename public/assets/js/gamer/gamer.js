@@ -232,13 +232,13 @@ function saveResult()
                         
         // Crear una variable para acumular los resultados
         let resultAlerts = [];
-        let ids = 0;
+        let categ_id = 0;
         let sum  = 0;
 
         Object.keys(categorySums).forEach((categoryName) => {
             sum = categorySums[categoryName];
 
-            ids  =  categoryIds[categoryName]
+            categ_id  =  categoryIds[categoryName]
 
             if (sum === maxCategorySum) {
                 let resultAlert = '<b>'+categoryName+'</b>'+': '+ categoryDescriptions[categoryName];
@@ -261,7 +261,7 @@ function saveResult()
                 confirmButtonText: 'Aceptar',
             })
             .then((result) => {
-                this.guardarDatos(gmrId, sum, ids);
+                this.guardarDatos(sum, gmrId, categ_id);
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
 
@@ -284,14 +284,14 @@ function saveResult()
 }
 
 // Función para guardar los datos mediante AJAX
-function guardarDatos(gamer_id, categ_id, maxValue) {
+function guardarDatos(sum, gmrId, categ_id) {
   
     let route = `/saveResultsGamer`;
 
     let formData = {
 
-        'value': maxValue,
-        'gamer_id': gamer_id,
+        'value': sum,
+        'gamer_id': gmrId,
         'category_id': categ_id
 
     };
