@@ -250,8 +250,7 @@ function saveResult()
        
         if (resultAlerts.length > 0) {
 
-            // 
-            this.guardarDatos(gmrId, sum, ids);
+            
             $('.cover-container').html('');
             
             // Mostrar todos los resultados acumulados en el diálogo Swal
@@ -262,7 +261,7 @@ function saveResult()
                 confirmButtonText: 'Aceptar',
             })
             .then((result) => {
-               
+                this.guardarDatos(gmrId, sum, ids);
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
 
