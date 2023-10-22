@@ -134,14 +134,19 @@ class UserController extends Controller
         ];
 
         foreach ($values as $value) {
-
-            ResultGamer::create([
-
-                'value' => $value,
-                'gamer_id' => $request->gamer_id,
-                'category_id' => $request->category_id,
-
-            ]);
+            
+            ResultGamer::updateOrCreate(
+                [   
+                    'gamer_id' => $request->gamer_id,
+                    'category_id' => $request->category_id,  // Columna(s) para buscar el registro existente
+                        
+                ], 
+                [
+                    'value' => $value,
+                    'gamer_id' => $request->gamer_id,   // Datos para actualizar o crear
+                    'category_id' => $request->category_id
+                ] 
+            );
         }
 
     }
@@ -236,6 +241,7 @@ class UserController extends Controller
         ->select('id', 'gamer_id', 'category_id')
         ->where('category_id', $id)
         ->get();
+        
 
         if($request->ajax())
         {
