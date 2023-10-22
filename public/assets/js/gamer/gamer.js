@@ -272,9 +272,9 @@ function saveResult()
                         showConfirmButton: false,
                     });  
                 
-                    setTimeout(() => {
+                    /*setTimeout(() => {
                         window.location.href = "/";
-                    }, 3000);
+                    }, 3000);*/
                 } 
             });
         }
