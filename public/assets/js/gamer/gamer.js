@@ -234,9 +234,9 @@ function saveResult()
         let resultAlerts = [];
 
         Object.keys(categorySums).forEach((categoryName) => {
-            const sum = categorySums[categoryName];
+            let sum = categorySums[categoryName];
 
-            const categ_id  =  categoryIds[categoryName]
+            let categ_id  =  categoryIds[categoryName]
 
             if (sum === maxCategorySum) {
                 let resultAlert = '<b>'+categoryName+'</b>'+': '+ categoryDescriptions[categoryName];
