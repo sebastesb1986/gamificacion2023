@@ -123,8 +123,7 @@ class UserController extends Controller
     // RESULT GAMER
     public function resultGamer(Request $request)
     {
-        $values = $request->value;
-
+dd($request-all());
         $data = [
 
             'value' => $request->value,
