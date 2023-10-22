@@ -250,7 +250,7 @@ function saveResult()
 
         if (resultAlerts.length > 0) {
 
-            this.guardarDatos(gmrId, sum, ids);
+            // this.guardarDatos(gmrId, sum, ids);
 
             $('.cover-container').html('');
             
