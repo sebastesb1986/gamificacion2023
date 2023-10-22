@@ -232,25 +232,27 @@ function saveResult()
                         
         // Crear una variable para acumular los resultados
         let resultAlerts = [];
+        const ids = 0;
+        const sum  = 0;
 
         Object.keys(categorySums).forEach((categoryName) => {
-            const sum = categorySums[categoryName];
+            sum = categorySums[categoryName];
+
+            ids  =  categoryIds[categoryName]
 
             if (sum === maxCategorySum) {
                 let resultAlert = '<b>'+categoryName+'</b>'+': '+ categoryDescriptions[categoryName];
                 resultAlerts.push(resultAlert);
             }
-
-            this.guardarDatos(gmrId, sum, categoryIds[categoryName]);
             
         });
 
+
         if (resultAlerts.length > 0) {
 
-            $('.cover-container').html('');
+            this.guardarDatos(gmrId, sum, ids);
 
-             // GUARDAR
-             // this.guardarDatos(gmrId, );
+            $('.cover-container').html('');
             
             // Mostrar todos los resultados acumulados en el diálogo Swal
             Swal.fire({
