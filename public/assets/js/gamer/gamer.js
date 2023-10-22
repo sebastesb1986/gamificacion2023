@@ -232,7 +232,7 @@ function saveResult()
                         
         // Crear una variable para acumular los resultados
         let resultAlerts = [];
-        const ids = 0;
+        let ids = 0;
         const sum  = 0;
 
         Object.keys(categorySums).forEach((categoryName) => {
@@ -247,11 +247,11 @@ function saveResult()
             
         });
 
-
+       
         if (resultAlerts.length > 0) {
 
-            // this.guardarDatos(gmrId, sum, ids);
-
+            // 
+            this.guardarDatos(gmrId, sum, ids);
             $('.cover-container').html('');
             
             // Mostrar todos los resultados acumulados en el diálogo Swal
