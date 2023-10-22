@@ -233,7 +233,7 @@ function saveResult()
         // Crear una variable para acumular los resultados
         let resultAlerts = [];
         let ids = 0;
-        const sum  = 0;
+        let sum  = 0;
 
         Object.keys(categorySums).forEach((categoryName) => {
             sum = categorySums[categoryName];
