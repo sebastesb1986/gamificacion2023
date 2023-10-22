@@ -123,6 +123,8 @@ class UserController extends Controller
     // RESULT GAMER
     public function resultGamer(Request $request)
     {
+        $values = $request->value;
+
         $data = [
 
             'value' => $request->value,
@@ -131,7 +133,7 @@ class UserController extends Controller
 
         ];
 
-        //foreach ($values as $value) {
+        foreach ($values as $value) {
 
             ResultGamer::updateOrCreate(
                 [   
@@ -139,9 +141,13 @@ class UserController extends Controller
                     'category_id' => $request->category_id,  // Columna(s) para buscar el registro existente
                         
                 ], 
-                $data
+                [
+                    'value' => $request->value,
+                    'gamer_id' => $request->gamer_id,   // Datos para actualizar o crear
+                    'category_id' => $request->category_id
+                ] 
             );
-        // }
+        }
 
     }
 

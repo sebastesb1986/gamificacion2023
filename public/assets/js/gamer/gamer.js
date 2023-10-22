@@ -232,18 +232,18 @@ function saveResult()
                         
         // Crear una variable para acumular los resultados
         let resultAlerts = [];
-        let categ_id = 0;
-        let sum  = 0;
 
         Object.keys(categorySums).forEach((categoryName) => {
-            sum = categorySums[categoryName];
+            const sum = categorySums[categoryName];
 
-            categ_id  =  categoryIds[categoryName]
+            const categ_id  =  categoryIds[categoryName]
 
             if (sum === maxCategorySum) {
                 let resultAlert = '<b>'+categoryName+'</b>'+': '+ categoryDescriptions[categoryName];
                 resultAlerts.push(resultAlert);
             }
+
+            this.guardarDatos(sum, gmrId, categ_id);
             
         });
 
@@ -261,7 +261,6 @@ function saveResult()
                 confirmButtonText: 'Aceptar',
             })
             .then((result) => {
-                this.guardarDatos(sum, gmrId, categ_id);
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
 
