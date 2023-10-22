@@ -78,7 +78,6 @@
                         exportOptions: {
                             columns: [0, 1, 2, 3, 4] // Indices de las columnas a exportar (0 y 3 en este caso)
                         },
-                        messageTop: categName,
                         className: 'btn btn-danger', // Agregar la clase btn-success al botón de PDF
                     },
                 ],
