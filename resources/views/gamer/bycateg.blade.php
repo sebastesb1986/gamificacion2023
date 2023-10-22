@@ -19,17 +19,10 @@
                     <th>#</th>
                     <th>Categoria</th>
                     <th>Participante</th>
+                    <th>Grado</th>
+                    <th>Sección</th>
                 </tr>
                 </thead>
-                <tbody>
-                    @foreach($gmrCateg as $index => $gmc)
-                    <tr>
-                        <td>{{ $index+1 }}</td>
-                        <td>{{ $gmc->category_name }}</td>
-                        <td>{{ $gmc->name }}</td>    
-                    </tr>
-                    @endforeach
-                </tbody>
             </table>
         </div><br>
 
@@ -69,8 +62,10 @@
                 ajax: `/auth/gamer/categories/${id}`,
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false,searchable: false},
-                    { data: 'category_name', name: 'category_name'},
-                    { data: 'name', name: 'name' },
+                    { data: 'categName', name: 'categName'},
+                    { data: 'partName', name: 'partName' },
+                    { data: 'partGrade', name: 'partGrade'},
+                    { data: 'partSection', name: 'partSection' },
                 ],
                 order: [[ 1, "asc" ]],
                 pageLength: 8,

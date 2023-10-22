@@ -20,4 +20,9 @@ class ResultGamer extends Model
     {
         return $this->belongsTo(Gamer::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

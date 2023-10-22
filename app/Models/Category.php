@@ -19,4 +19,10 @@ class Category extends Model
         return $this->hasMany(Question::class);
     }
 
+    // Relation with resultGamers
+    public function resultGamer()
+    {
+        return $this->hasMany(ResultGamer::class);
+    }
+
 }

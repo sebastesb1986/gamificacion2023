@@ -30,8 +30,6 @@ class UserController extends Controller
         ->where('gamer_id', $id)
         ->get();
 
-       
-
         if ($request->ajax()) {
 
             return Datatables::of($gamer)
@@ -229,13 +227,14 @@ class UserController extends Controller
     public function gamerByCategs(Request $request, $id)
     {
 
-        $gmrCateg =  Gamer::select('gamers.name')
-        ->addSelect(DB::raw('MAX(categories.name) as category_name'))
-        ->join('answer', 'answer.gamer_id', '=', 'gamers.id')
-        ->join('question', 'question.id', '=', 'answer.question_id')
-        ->join('categories', 'categories.id', '=', 'question.category_id')
-        ->where('categories.id', $id)
-        ->groupBy('gamers.name')
+        $gmrCateg = ResultGamer::with(['gamer' => function($td){
+            $td->select(['id', 'name', 'grade', 'section']);
+        }])
+        ->with(['category' => function($td){
+            $td->select(['id', 'name']);
+        }])
+        ->select('id', 'gamer_id', 'category_id')
+        ->where('category_id', $id)
         ->get();
 
         if($request->ajax())
@@ -243,13 +242,31 @@ class UserController extends Controller
 
             return Datatables::of($gmrCateg)
             ->addIndexColumn()
-            /*->addColumn('details', function ($td) {
+            ->addColumn('categName', function ($td) {
 
-                $href = '<a href="'.route('gamer.categs', $td->id).'" class="btn btn-primary btn-circle btn-sm" target="_blank"><i class="fas fa-gamepad"></i></a>';
+                $href = $td->category->name;
                 return $href;
                 
-             })*/
-            //->rawColumns(['details'])
+             })
+             ->addColumn('partName', function ($td) {
+
+                $href = $td->gamer->name;
+                return $href;
+                
+             })
+             ->addColumn('partGrade', function ($td) {
+
+                $href = $td->gamer->grade;
+                return $href;
+                
+             })
+             ->addColumn('partSection', function ($td) {
+
+                $href = $td->gamer->section;
+                return $href;
+                
+             })
+            ->rawColumns(['categName', 'partName', 'partGrade', 'partSection'])
             ->make(true);
 
 

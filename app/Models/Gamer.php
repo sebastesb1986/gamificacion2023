@@ -21,9 +21,9 @@ class Gamer extends Model
         return $this->hasMany(Answer::class);
     }
 
-     // Relation with resultGamers
-     public function resultGamer()
-     {
-         return $this->hasMany(ResultGamer::class);
-     }
+    // Relation with resultGamers
+    public function resultGamer()
+    {
+        return $this->hasMany(ResultGamer::class);
+    }
 }
