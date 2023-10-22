@@ -46,6 +46,11 @@
     <!-- Datatables -->
     <script src="{{ secure_asset('assets/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
     <script src="{{ secure_asset('assets/js/dataTables.bootstrap4.min.js') }}" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     
     <script>
         $(function() {
@@ -56,6 +61,27 @@
                 "language": {
                         "url": "/assets/js/spanish.json"
                 },
+                dom: '<"top"Bflr>t<"bottom"ip>',
+                buttons: [
+                    {
+                        text: '<i class="fas fa-file-excel" title="Exportar a Excel"></i>',
+                        extend: 'excelHtml5',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4] // Indices de las columnas a exportar (0 y 3 en este caso)
+                        },
+                        className: 'btn btn-success', // Agregar la clase btn-success al botón de EXCEL
+
+                    },
+                    {
+                        text: '<i class="fas fa-file-pdf" title="Exportar a PDF"></i>',
+                        extend: 'pdfHtml5',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4] // Indices de las columnas a exportar (0 y 3 en este caso)
+                        },
+                        messageTop: categName,
+                        className: 'btn btn-danger', // Agregar la clase btn-success al botón de PDF
+                    },
+                ],
                 processing: false,
                 responsive: true,
                 serverSide: true,
