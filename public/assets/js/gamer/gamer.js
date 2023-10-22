@@ -305,7 +305,7 @@ function guardarDatos(sum, gmrId, categ_id) {
         console.log("Datos guardados automáticamente");
     },
     error: function(xhr, status, error) {
-        console.error("Error al guardar los datos: " + error);
+        console.error("Error al guardar los datos: " + error.description);
     }
     });
 }
