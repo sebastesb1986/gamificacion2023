@@ -142,7 +142,7 @@ class UserController extends Controller
                         
                 ], 
                 [
-                    'value' => $request->value,
+                    'value' => $value,
                     'gamer_id' => $request->gamer_id,   // Datos para actualizar o crear
                     'category_id' => $request->category_id
                 ] 
