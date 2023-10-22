@@ -29,7 +29,7 @@ function Cargar()
     table.ajax.reload();
 }
 
-let gamer_id = $('.gamerId').data('id');
+/*let gamer_id = $('.gamerId').data('id');
 let categ_id = $(".categId").data('id');
 
 let celdValue = $(".celdValue").text();
@@ -68,4 +68,4 @@ function guardarDatos(gamer_id, categ_id, celdValue) {
         console.error("Error al guardar los datos: " + error);
     }
     });
-}
+}*/

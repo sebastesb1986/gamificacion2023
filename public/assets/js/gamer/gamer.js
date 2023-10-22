@@ -1,7 +1,9 @@
 let count =  0;
 let qstId = '';
 let gmrId = '';
+let categId = '';
 let totalQu = '';
+let maxValue = 0;
 
 let atras = false;
 let contVal;
@@ -194,6 +196,7 @@ function questionRTN(event){
 function saveResult()
 {
     $('#myModal').modal('toggle');
+    
 
     $.get("/showResultGamer/"+ gmrId, (response) => {
 
@@ -215,6 +218,8 @@ function saveResult()
 
                 maxCategorySum = sum;
                 maxCategoryname = categoryName;
+                categId = categoryName;
+                maxValue = sum
 
             }
 
@@ -238,7 +243,8 @@ function saveResult()
         if (resultAlerts.length > 0) {
 
             $('.cover-container').html('');
-            
+             // GUARDAR
+             this.guardarDatos(gmrId, categId, maxValue);
             // Mostrar todos los resultados acumulados en el diálogo Swal
             Swal.fire({
                 icon: 'info',
@@ -247,6 +253,7 @@ function saveResult()
                 confirmButtonText: 'Aceptar',
             })
             .then((result) => {
+               
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
 
@@ -266,4 +273,31 @@ function saveResult()
 
     });
  
+}
+
+// Función para guardar los datos mediante AJAX
+function guardarDatos(gamer_id, categ_id, maxValue) {
+  
+    let route = `/saveResultsGamer`;
+
+    let formData = {
+
+        'value': maxValue,
+        'gamer_id': gamer_id,
+        'category_id': categ_id
+
+    };
+    $.ajax({
+        url: route,
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        type: 'POST',
+        dataType: 'json',
+        data: formData,
+    success: function(response) {
+        console.log("Datos guardados automáticamente");
+    },
+    error: function(xhr, status, error) {
+        console.error("Error al guardar los datos: " + error);
+    }
+    });
 }
