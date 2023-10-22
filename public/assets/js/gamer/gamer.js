@@ -287,7 +287,7 @@ function guardarDatos(sum, gmrId, categ_id) {
   
     let route = `/saveResultsGamer`;
 
-    let ajax_data = {
+    let formData = {
 
         'value': sum,
         'gamer_id': gmrId,
@@ -299,7 +299,7 @@ function guardarDatos(sum, gmrId, categ_id) {
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         type: 'POST',
         dataType: 'json',
-        data: ajax_data,
+        data: formData,
     success: function(response) {
         console.log("Datos guardados automáticamente");
     },
