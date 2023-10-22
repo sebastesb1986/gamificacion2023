@@ -208,6 +208,7 @@ class UserController extends Controller
                 if (!isset($categorySums[$categoryName])) {
                     $categorySums[$categoryName] = 0;
                     $categoryDescriptions[$categoryName] = $categoryDescription;
+                    $categoryIds[$categoryName] = $categoryId;
                 }
 
                 // Sumar el valor al acumulador de la categoría
@@ -220,9 +221,9 @@ class UserController extends Controller
                 
             }
 
-            return response()->json(['categoryId' => $categoryId, 'categoryName' => $categoryName,
+            return response()->json(['categoryIds' => $categoryIds, 'categoryName' => $categoryName,
             'gamerName' => $gamerName,  'categoryDescriptions' =>$categoryDescriptions, 
-            'maxCategorySum' => $maxCategorySum, 'maxCategoryId' => $maxCategoryId, 
+            'maxCategorySum' => $maxCategorySum,
             'maxCategoryName' => $maxCategoryName , 'categorySums' => $categorySums]);
 
         }

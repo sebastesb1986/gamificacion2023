@@ -204,6 +204,7 @@ function saveResult()
         const categoryName = response.categoryName;
         const gamerName = response.gamerName;
         const categoryDescriptions = response.categoryDescriptions;
+        const categoryIds = response.categoryIds;
         let maxCategorySum = response.maxCategorySum;
         let maxCategoryname = response.maxCategoryName;
         let maxCategoryId = response.maxCategoryId
@@ -235,7 +236,7 @@ function saveResult()
             const sum = categorySums[categoryName];
 
             if (sum === maxCategorySum) {
-                let resultAlert = '<b>'+categoryId+'</b>'+': '+ categoryDescriptions[categoryName];
+                let resultAlert = '<b>'+categoryName+'</b>'+': '+ categoryIds[categoryName];
                 resultAlerts.push(resultAlert);
             }
         });
