@@ -272,29 +272,4 @@ function saveResult()
  
 }
 
-// Función para guardar los datos mediante AJAX
-function guardarDatos(gamer_id, categ_id, maxValue) {
-  
-    let route = `/saveResultsGamer`;
 
-    let formData = {
-
-        'value': maxValue,
-        'gamer_id': gamer_id,
-        'category_id': categ_id
-
-    };
-    $.ajax({
-        url: route,
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        type: 'POST',
-        dataType: 'json',
-        data: formData,
-    success: function(response) {
-        console.log("Datos guardados automáticamente");
-    },
-    error: function(xhr, status, error) {
-        console.error("Error al guardar los datos: " + error);
-    }
-    });
-}
