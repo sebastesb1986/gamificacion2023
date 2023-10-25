@@ -20,8 +20,7 @@
                     <th>Categoria</th>
                     <th>Puntaje</th>
                     <th>Participante</th>
-                    <th>Grado</th>
-                    <th>Sección</th>
+                    <th>Grado y Sección</th>
                 </tr>
                 </thead>
             </table>
@@ -87,6 +86,11 @@
                 processing: false,
                 responsive: true,
                 serverSide: true,
+                searching: true, // Habilitar la barra de búsqueda
+                search: {
+                    regex: true, // Habilitar búsqueda exacta
+                    smart: false, // Desactivar búsqueda inteligente
+                },
                 ajax: {
                     url: `/auth/gamer/categories/${id}`,
                     dataSrc: function (data) {
@@ -101,7 +105,6 @@
                     { data: 'value', name: 'value' },
                     { data: 'partName', name: 'partName' },
                     { data: 'partGrade', name: 'partGrade'},
-                    { data: 'partSection', name: 'partSection' },
                 ],
                 order: [[ 1, "asc" ]],
                 pageLength: 8,

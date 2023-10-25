@@ -272,17 +272,11 @@ class UserController extends Controller
              })
              ->addColumn('partGrade', function ($td) {
 
-                $href = $td->gamer->grade;
+                $href = $td->gamer->grade ."-". $td->gamer->section ;
                 return $href;
                 
              })
-             ->addColumn('partSection', function ($td) {
-
-                $href = $td->gamer->section;
-                return $href;
-                
-             })
-            ->rawColumns(['categName', 'partName', 'partGrade', 'partSection'])
+            ->rawColumns(['categName', 'partName', 'partGrade'])
             ->make(true);
 
 

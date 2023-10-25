@@ -22,11 +22,8 @@
                                                 <label class="input-group-text" for="inputGrade">¿De que grado eres?</label>
                                             </div>
                                             <select class="custom-select" id="inputGrade" name="grade">
-                                            @php
-                                                $nombres = [6 => 'Sexto', 7 => 'Septimo', 8 => 'Octavo', 9 => 'Noveno', 10 => 'Decimo', 11 => 'Once'];
-                                            @endphp
                                                 @for($i=6; $i<=11; $i++)
-                                                    <option value="{{ $nombres[$i] }}" {{ ($i == 6) ? 'selected' : '' }}>{{ $nombres[$i] }}</option>
+                                                    <option value="{{ $i }}" {{ ($i == 6) ? 'selected' : '' }}>{{ $i }}</option>
                                                 @endfor
                                             </select>
                                         </div>
