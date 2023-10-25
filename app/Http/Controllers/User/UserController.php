@@ -34,12 +34,10 @@ class UserController extends Controller
 
             return Datatables::of($gamer)
             ->addIndexColumn()
-            ->addColumn('name', function ($td) use ($categName){
+            ->addColumn('name', function ($td){
 
-                $categName = $td->question->category->name;
-                return $categName;
-    
-                
+                return $td->question->category->name;
+      
              })
              ->addColumn('questDesc', function ($td) {
 
@@ -117,7 +115,7 @@ class UserController extends Controller
         }
         /* Fin Tabla de resultados Gamer */
 
-        return view('gamer.index', compact('id', ' categoryName', 'gamerName', 'categoryIds', 'categoryDescriptions', 'totalSum', 'maxValue', 'maxCategorySum', 'maxCategoryName', 'categorySums'));
+        return view('gamer.index', compact('id', 'categoryName', 'gamerName', 'categoryIds', 'categoryDescriptions', 'totalSum', 'maxValue', 'maxCategorySum', 'maxCategoryName', 'categorySums'));
 
     }
 
