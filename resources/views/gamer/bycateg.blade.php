@@ -57,8 +57,8 @@
         $(function() {
 
             const id = $('#gamer-table').data('id');
-            var maxIndex = -1;
-            var maxValue = -Infinity;
+            var max = -Infinity;
+
 
             $('#gamer-table').DataTable({
                 "language": {
@@ -87,7 +87,14 @@
                 processing: false,
                 responsive: true,
                 serverSide: true,
-                ajax: `/auth/gamer/categories/${id}`,
+                ajax: {
+                    url: `/auth/gamer/categories/${id}`,
+                    dataSrc: function (data) {
+                        // Reset max value on data change
+                        max = -Infinity;
+                        return data.data;
+                    }
+                },
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false,searchable: false},
                     { data: 'categName', name: 'categName'},
@@ -96,39 +103,46 @@
                     { data: 'partGrade', name: 'partGrade'},
                     { data: 'partSection', name: 'partSection' },
                 ],
-                createdRow: function(row, data, dataIndex) {
-                    var value = parseFloat(data.value);
-
-                    // Agregar la clase 'text-success' a toda la fila si 'value' es el valor máximo
-                    if (value === maxValue) {
-                        $(row).addClass('text-success');
-                    }
-                },
-                initComplete: function () {
-                    var maxIndex = -1;
-                    var maxValue = -Infinity;
-
-                    // Encontrar el valor máximo en la columna 'value'
-                    this.api().column(2).data().each(function (value, index) {
-                        if (value > maxValue) {
-                            maxValue = value;
-                            maxIndex = index;
-                        }
-                    });
-
-                    // Guardar el valor máximo y su índice
-                    if (maxIndex !== -1) {
-                        this.api().rows(maxIndex).every(function () {
-                            var row = this.node();
-                            $(row).addClass('text-success');
-                        });
-                    }
-                },
                 order: [[ 1, "asc" ]],
                 pageLength: 8,
                 lengthMenu: [2, 4, 6, 8, 10],
+                drawCallback: function (settings) {
+                    if (settings.aiDisplay.length > 0) {
+                        // When the table is drawn and displayed data is available
+                        var currentMax = getMaxValueInColumn('value');
+                        if (currentMax !== max) {
+                            max = currentMax;
+                            markMaxValue(max);
+                        }
+                    }
+                }
+              
             });
         });
+
+        function getMaxValueInColumn(columnName) {
+            var table = $('#gamer-table').DataTable();
+            var max = -Infinity;
+
+            table.column(columnName + ':name', { search: 'applied' }).data().each(function (value) {
+                var parsedValue = parseFloat(value);
+                if (!isNaN(parsedValue) && parsedValue > max) {
+                    max = parsedValue;
+                }
+            });
+
+            return max;
+        }
+
+        function markMaxValue(maxValue) {
+            $('#gamer-table tbody td:nth-child(3)').each(function (index) {
+                var cellValue = parseFloat($(this).text());
+                if (!isNaN(cellValue) && cellValue === maxValue) {
+                    $(this).addClass('text-success');
+                }
+            });
+        }
+
 
         function Cargar()
         {
