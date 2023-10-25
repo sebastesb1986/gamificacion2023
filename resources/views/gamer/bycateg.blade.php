@@ -18,6 +18,7 @@
                     </tr>
                     <th>#</th>
                     <th>Categoria</th>
+                    <th>Puntaje</th>
                     <th>Participante</th>
                     <th>Grado</th>
                     <th>Sección</th>
@@ -56,6 +57,8 @@
         $(function() {
 
             const id = $('#gamer-table').data('id');
+            var maxIndex = -1;
+            var maxValue = -Infinity;
 
             $('#gamer-table').DataTable({
                 "language": {
@@ -88,10 +91,39 @@
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false,searchable: false},
                     { data: 'categName', name: 'categName'},
+                    { data: 'value', name: 'value' },
                     { data: 'partName', name: 'partName' },
                     { data: 'partGrade', name: 'partGrade'},
                     { data: 'partSection', name: 'partSection' },
                 ],
+                createdRow: function(row, data, dataIndex) {
+                    var value = parseFloat(data.value);
+
+                    // Agregar la clase 'text-success' a toda la fila si 'value' es el valor máximo
+                    if (value === maxValue) {
+                        $(row).addClass('text-success');
+                    }
+                },
+                initComplete: function () {
+                    var maxIndex = -1;
+                    var maxValue = -Infinity;
+
+                    // Encontrar el valor máximo en la columna 'value'
+                    this.api().column(2).data().each(function (value, index) {
+                        if (value > maxValue) {
+                            maxValue = value;
+                            maxIndex = index;
+                        }
+                    });
+
+                    // Guardar el valor máximo y su índice
+                    if (maxIndex !== -1) {
+                        this.api().rows(maxIndex).every(function () {
+                            var row = this.node();
+                            $(row).addClass('text-success');
+                        });
+                    }
+                },
                 order: [[ 1, "asc" ]],
                 pageLength: 8,
                 lengthMenu: [2, 4, 6, 8, 10],

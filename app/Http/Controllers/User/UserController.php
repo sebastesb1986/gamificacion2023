@@ -242,7 +242,7 @@ class UserController extends Controller
         ->with(['category' => function($td){
             $td->select(['id', 'name']);
         }])
-        ->select('id', 'gamer_id', 'category_id')
+        ->select('id', 'value', 'gamer_id', 'category_id')
         ->where('category_id', $id)
         ->get();
         
@@ -255,6 +255,12 @@ class UserController extends Controller
             ->addColumn('categName', function ($td) {
 
                 $href = $td->category->name;
+                return $href;
+                
+             })
+             ->addColumn('value', function ($td) {
+
+                $href = $td->value;
                 return $href;
                 
              })
