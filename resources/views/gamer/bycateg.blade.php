@@ -1,6 +1,6 @@
 @extends('layouts.principal')
 
-@section('title', 'Resultados')
+@section('title', 'Resultados '. $gmrCateg[0]->category->name)
 
 @section('content')
 
@@ -14,13 +14,12 @@
             <table class="table table-bordered text-center" id="gamer-table" data-id="{{ $id }}" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th colspan="6">Resultados por pregunta</th>
+                        <th colspan="6">Resultados categoria <b class="text-dark">{{ $gmrCateg[0]->category->name }}</b></th>
                     </tr>
                     <th>#</th>
-                    <th>Categoria</th>
-                    <th>Puntaje</th>
                     <th>Participante</th>
                     <th>Grado y Sección</th>
+                    <th>Puntaje</th>
                 </tr>
                 </thead>
             </table>
@@ -72,7 +71,7 @@
                         text: '<i class="fas fa-file-excel" title="Exportar a Excel"></i>',
                         extend: 'excelHtml5',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4] // Indices de las columnas a exportar (0 y 3 en este caso)
+                            columns: [0, 1, 2, 3] // Indices de las columnas a exportar (0 y 3 en este caso)
                         },
                         className: 'btn btn-success', // Agregar la clase btn-success al botón de EXCEL
 
@@ -81,7 +80,7 @@
                         text: '<i class="fas fa-file-pdf" title="Exportar a PDF"></i>',
                         extend: 'pdfHtml5',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4] // Indices de las columnas a exportar (0 y 3 en este caso)
+                            columns: [0, 1, 2, 3] // Indices de las columnas a exportar (0 y 3 en este caso)
                         },
                         className: 'btn btn-danger', // Agregar la clase btn-success al botón de PDF
                     },
@@ -104,13 +103,12 @@
                 },
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false,searchable: false},
-                    { data: 'categName', name: 'categName'},
-                    { data: 'value', name: 'value' },
                     { data: 'partName', name: 'partName' },
                     { data: 'partGrade', name: 'partGrade'},
+                    { data: 'value', name: 'value' },
                 ],
                 order: [[ 1, "asc" ]],
-                pageLength: 5,
+                pageLength: 10,
                 lengthMenu: [ [5, 10, 15, 20, -1], [5, 10, 15, 20, "Todo"] ],
                 drawCallback: function (settings) {
                     if (settings.aiDisplay.length > 0) {
@@ -143,10 +141,10 @@
         }
 
         function markMaxValue(maxValue) {
-            $('#gamer-table tbody td:nth-child(3)').each(function (index) {
+            $('#gamer-table tbody td:nth-child(4)').each(function (index) {
                 var cellValue = parseFloat($(this).text());
                 if (!isNaN(cellValue) && cellValue === maxValue) {
-                    $(this).addClass('text-success');
+                    $(this).addClass('text-white bg-success');
                 }
             });
         }

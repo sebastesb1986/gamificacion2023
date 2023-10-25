@@ -34,9 +34,10 @@ class UserController extends Controller
 
             return Datatables::of($gamer)
             ->addIndexColumn()
-            ->addColumn('name', function ($td) {
+            ->addColumn('name', function ($td) use ($categName){
 
-                return $td->question->category->name;
+                $categName = $td->question->category->name;
+                return $categName;
     
                 
              })
@@ -116,7 +117,7 @@ class UserController extends Controller
         }
         /* Fin Tabla de resultados Gamer */
 
-        return view('gamer.index', compact('id', 'gamerName', 'categoryIds', 'categoryDescriptions', 'totalSum', 'maxValue', 'maxCategorySum', 'maxCategoryName', 'categorySums'));
+        return view('gamer.index', compact('id', ' categoryName', 'gamerName', 'categoryIds', 'categoryDescriptions', 'totalSum', 'maxValue', 'maxCategorySum', 'maxCategoryName', 'categorySums'));
 
     }
 
@@ -266,7 +267,7 @@ class UserController extends Controller
              })
              ->addColumn('partName', function ($td) {
 
-                $href = '<a href="' . route('gamer.index', $td->gamer_id) . '" class="text-reset" target="_blank">' . $td->gamer->name . '</a>';
+                $href = '<a href="' . route('gamer.index', $td->gamer_id) . '" class="text-decoration-none" target="_blank">' . $td->gamer->name . '</a>';
                 return $href;
                 
              })
