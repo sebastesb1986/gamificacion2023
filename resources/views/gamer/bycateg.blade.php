@@ -61,7 +61,10 @@
 
             $('#gamer-table').DataTable({
                 "language": {
-                        "url": "/assets/js/spanish.json"
+                        "url": "/assets/js/spanish.json",
+                        "lengthMenu": 'Mostraras _MENU_ registros por página',
+
+                        
                 },
                 dom: '<"top"Bflr>t<"bottom"ip>',
                 buttons: [
@@ -107,8 +110,8 @@
                     { data: 'partGrade', name: 'partGrade'},
                 ],
                 order: [[ 1, "asc" ]],
-                pageLength: 8,
-                lengthMenu: [2, 4, 6, 8, 10],
+                pageLength: 5,
+                lengthMenu: [ [5, 10, 15, 20, -1], [5, 10, 15, 20, "Todo"] ],
                 drawCallback: function (settings) {
                     if (settings.aiDisplay.length > 0) {
                         // When the table is drawn and displayed data is available
@@ -121,6 +124,8 @@
                 }
               
             });
+            
+
         });
 
         function getMaxValueInColumn(columnName) {
