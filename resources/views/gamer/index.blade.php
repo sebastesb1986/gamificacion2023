@@ -11,6 +11,10 @@
     <div class="card-body">
 
         <div class="table-responsive">
+            @include('gamer.details')
+        </div><br>
+
+        <div class="table-responsive">
             <table class="table table-bordered text-center" data-id="{{ $id }}" id="gamer-table" width="100%" cellspacing="0">
                 <thead>
                     <tr>
@@ -24,11 +28,8 @@
                 </tr>
                 </thead>
             </table>
-        </div><br>
-
-        <div class="table-responsive">
-            @include('gamer.details')
         </div>
+        
     </div>
 </div>
 @endsection

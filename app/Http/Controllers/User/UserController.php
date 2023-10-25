@@ -266,7 +266,7 @@ class UserController extends Controller
              })
              ->addColumn('partName', function ($td) {
 
-                $href = $td->gamer->name;
+                $href = '<a href="' . route('gamer.index', $td->gamer_id) . '" class="text-reset" target="_blank">' . $td->gamer->name . '</a>';
                 return $href;
                 
              })

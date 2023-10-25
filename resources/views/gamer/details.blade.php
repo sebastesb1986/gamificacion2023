@@ -5,7 +5,7 @@
 <!-- Mostrar las sumas por categoría -->
     <!-- Mostrar las sumas por categoría -->
     
-<table class="table text-center">
+<table class="table table-bordered text-center">
     <thead class="thead-dark">
         <tr>
             <th colspan="2">Consolidado participante: {{ ucfirst($gamerName) }}</th>
